@@ -1,4 +1,4 @@
-export interface myDto {
+export interface MyDto {
     firstname: string,
     lastname: string,
     

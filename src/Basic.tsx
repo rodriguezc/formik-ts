@@ -1,6 +1,13 @@
 import * as React from 'react';
-import { Formik } from 'formik';
+import { Formik, FormikContext } from 'formik';
+import {MyDto} from './MyDto';
 
+import BasicPart from './BasicPart';
+
+const formInitialValues : MyDto = {
+    firstname : "",
+    lastname: ""
+}
 
 const Basic = () => (
     <div>
@@ -18,43 +25,25 @@ const Basic = () => (
             - `<Formik>{props => <form>...</form>}</Formik>` (identical to as render, just written differently)
           */}
       <Formik
-        initialValues={{
-          email: '',
-          password: '',
-        }}
+        initialValues={formInitialValues}
        
         onSubmit={(
-          values,
-          { setSubmitting, setErrors /* setValues and other goodies */ }
+          values: MyDto
         ) => {
+            console.log("Submitted values are", values);
         }}
-        render={({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-        }) => (
-          <form onSubmit={handleSubmit}>
+        render={(props:  FormikContext<MyDto>) => (
+          <form onSubmit={props.handleSubmit}>
             <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.email}
+              type="text"
+              name="firstname"
+              onChange={props.handleChange}
+              onBlur={props.handleBlur}
+              value={props.values.firstname}
             />
-            {touched.email && errors.email && <div>{errors.email}</div>}
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.password}
-            />
-            {touched.password && errors.password && <div>{errors.password}</div>}
-            <button type="submit" disabled={isSubmitting}>
+            {props.touched.firstname && props.errors.firstname && <div>{props.errors.firstname}</div>}
+             <BasicPart formik={props} />
+            <button type="submit" disabled={props.isSubmitting}>
               Submit
             </button>
           </form>
