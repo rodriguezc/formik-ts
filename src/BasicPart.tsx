@@ -9,7 +9,11 @@ interface FormikPartProps {
     formik: FormikContext<MyDto>;
 }
 
-class BasicPart extends React.Component<FormikPartProps & {}> {
+interface OuterProps {
+    myOuterProp: string;
+}
+
+class BasicPart extends React.Component<FormikPartProps & OuterProps> {
     
     public render() {
         return   (
@@ -21,10 +25,11 @@ class BasicPart extends React.Component<FormikPartProps & {}> {
                 onBlur={this.props.formik.handleBlur}
                 value={this.props.formik.values.lastname}
                 />
+                {this.props.myOuterProp}
                 {this.props.formik.touched.lastname && this.props.formik.errors.lastname && <div>{this.props.formik.errors.lastname}</div>}
              </React.Fragment>
              )
        }
 }
   
-export default connect<{}, MyDto> (BasicPart);
+export default connect<OuterProps, MyDto> (BasicPart);
