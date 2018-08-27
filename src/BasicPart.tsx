@@ -9,16 +9,11 @@ interface BasicPartProps {
     formik: FormikContext<MyDto>;
 }
 
-interface OuterProps {
-    myProp: string
-}
-
-class BasicPart extends React.Component<BasicPartProps & OuterProps> {
+class BasicPart extends React.Component<BasicPartProps & {}> {
     
     public render() {
         return   (
-            <React.Fragment>    
-                {this.props.myProp}    
+            <React.Fragment>        
                 <input
                 type="text"
                 name="lastname"
@@ -32,4 +27,4 @@ class BasicPart extends React.Component<BasicPartProps & OuterProps> {
        }
 }
   
-export default connect<OuterProps, MyDto> (BasicPart);
+export default connect<{}, MyDto> (BasicPart);
