@@ -5,11 +5,11 @@ import {MyDto} from './MyDto';
 import { connect, FormikContext } from 'formik';
 
 
-interface BasicPartProps {
+interface FormikPartProps {
     formik: FormikContext<MyDto>;
 }
 
-class BasicPart extends React.Component<BasicPartProps & {}> {
+class BasicPart extends React.Component<FormikPartProps & {}> {
     
     public render() {
         return   (
