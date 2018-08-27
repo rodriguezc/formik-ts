@@ -42,8 +42,8 @@ const Basic = () => (
               value={props.values.firstname}
             />
             {props.touched.firstname && props.errors.firstname && <div>{props.errors.firstname}</div>}
-             <BasicPart />
-            <button type="submit" disabled={props.isSubmitting}>
+             <BasicPart myProp="test" />
+            <button type="submit">
               Submit
             </button>
           </form>
